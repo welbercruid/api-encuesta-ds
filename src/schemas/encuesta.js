@@ -6,8 +6,10 @@ const encuestaSchema = new mongoose.Schema({
         respuesta: String,                
         encuestados: [{ nombre: String }]
                     //respuesta: { type: mongoose.Schema.Types.ObjectId, ref: "Respuesta"}
-        }],
-});
+    }],
+    tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tags', }],//hace referencia al modelo de tags(categorías)
+}, { timestamps: true }
+);
    
 const encuestaModel = mongoose.model('encuestas', encuestaSchema);
 
