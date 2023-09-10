@@ -30,36 +30,15 @@ Azul - 24 votos
 Ford - 29 votos  
 Chevrolet - 31 votos  
 
-# Modelo    
-const encuestaSchema = new mongoose.Schema({
-    preguntas: [{
-        pregunta: String,
-        respuestas: [{
-            respuesta: [{
-                texto: String,
-                personas_encuestadas: [{
-                    nombre: String
-                }]
-            }]
-        }]
-    }],
-    votacion: [{
-        pregunta: String,
-        respuestas: [{
-            respuesta: String,
-            votos: Number
-        }]
-    }]
-});
-
-Postman
-router.post('/preguntas', encuestaControllers.crearPreguntas);
+Postman  
+//pregunta  
 {
     "pregunta": "¿Cuál es tu color favorito?"
 } 
 
-router.post('/preguntas/:preguntaId/respuestas', encuestaControllers.crearRespuesta);
-{
-  "respuesta": "Blanco",
-  "nombre": "Juan"
+
+//respuesta
+{   
+"respuesta": "Blanco",  
+"nombre": "Juan"  
 }
