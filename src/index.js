@@ -6,13 +6,16 @@ const app = express();
 app.use(express.json());
 
 const encuestaRouter = require('./routes/pregunta');
-app.use('/encuesta', encuestaRouter);
+app.use('/preguntas', encuestaRouter);
 
 const respuestaRouter = require('./routes/respuesta');
-app.use('/encuesta', respuestaRouter);
+app.use('/respuestas', respuestaRouter);
 
 const reportesRouter = require('./routes/reportes');
-app.use('/encuesta', reportesRouter);
+app.use('/reportes', reportesRouter);
+
+const tagsRouter = require('./routes/tags');
+app.use('/tags', tagsRouter);
 
 app.get('/', (req, res) => {
     res.send("Live server")

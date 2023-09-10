@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pregunta\": \"¿Cuál es pais de origen?\"\r\n}   \r\n",
+					"raw": "{\r\n    \"pregunta\": \"¿En que mes es tu cumpleaños?\",\r\n    \"tag\": \"64fe05faf0f06b2eb9c8af36\"\r\n}   \r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,28 +20,28 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/encuesta/preguntas",
+					"raw": "http://localhost:3000/preguntas/crear",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"encuesta",
-						"preguntas"
+						"preguntas",
+						"crear"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "crear respuesta",
+			"name": "responder-nacionalidad",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"respuesta\": \"portugal\",\r\n    \"nombre\": \"pepe\"\r\n}",
+					"raw": "{\r\n    \"respuesta\": \"Bélgica\",\r\n    \"nombre\": \"{{$randomFirstName}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -49,17 +49,44 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/encuesta/preguntas/64fb4ed5e9080bd185177bbf/respuestas",
+					"raw": "http://localhost:3000/respuestas/64fe075ff0f06b2eb9c8af3e",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"encuesta",
-						"preguntas",
-						"64fb4ed5e9080bd185177bbf",
-						"respuestas"
+						"respuestas",
+						"64fe075ff0f06b2eb9c8af3e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "responder-mes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"respuesta\": \"{{$randomMonth}}\",\r\n    \"nombre\": \"{{$randomFirstName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/respuestas/64fe079bf0f06b2eb9c8af40",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"respuestas",
+						"64fe079bf0f06b2eb9c8af40"
 					]
 				}
 			},
@@ -83,14 +110,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/encuesta/",
+					"raw": "http://localhost:3000/preguntas/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"encuesta",
+						"preguntas",
 						""
 					]
 				}
@@ -112,16 +139,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/encuesta/preguntas/64fb3d9643671d50ac8dbdfa",
+					"raw": "http://localhost:3000/preguntas/64fe0005f0f06b2eb9c8af2d",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"encuesta",
 						"preguntas",
-						"64fb3d9643671d50ac8dbdfa"
+						"64fe0005f0f06b2eb9c8af2d"
 					]
 				}
 			},
@@ -145,15 +171,108 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/encuesta/reportes",
+					"raw": "http://localhost:3000/reportes",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"encuesta",
 						"reportes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear tag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"país\",\r\n    \"descripcion\": \"Territorio, con características geográficas y culturales propias, que puede constituir una entidad política dentro de un Estado\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tags/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tags",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all tags",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "//\"Mercurio\", \"Venus\", \"Tierra\", \"Jupiter\", \"Saturno\", \"Urano\", \"Neptuno\", \"Marte\", \"Plutón\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tags/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tags",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search-by-tag",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tags/search/mes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tags",
+						"search",
+						"mes"
 					]
 				}
 			},

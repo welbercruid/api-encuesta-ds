@@ -5,9 +5,9 @@ const encuestaSchema = new mongoose.Schema({
     respuestas: [{
         respuesta: String,                
         encuestados: [{ nombre: String }]
-                    //respuesta: { type: mongoose.Schema.Types.ObjectId, ref: "Respuesta"}
     }],
-    tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tags', }],//hace referencia al modelo de tags(categorías)
+    //hace referencia a un documento de otra colección
+    tag: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag', }],//hace referencia al modelo de 'Tags'
 }, { timestamps: true }
 );
    

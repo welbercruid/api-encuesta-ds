@@ -1,5 +1,5 @@
 const preguntaModel = require('../schemas/encuesta');
-
+const tagModel = require('../schemas/tags');
 const addPregunta = async (req, res) => {
     try {
         //console.log(req.body, "el req.body");
@@ -12,10 +12,16 @@ const addPregunta = async (req, res) => {
     }
 }
 
-const allPreguntas = async (req, res) => {
+const getPreguntas = async (req, res) => {
     try {
-        const preguntas = await preguntaModel.find({}, {pregunta: 1});
+        const {id} = req.params;
+        const filter = (id) ? {_id: id} : { };
+        const preguntas = await preguntaModel.find(filter, {pregunta: 1}).populate('tag');//el 1 para que imprima solo la pregunta y su id
         //console.log(preguntas, "todas las preguntas");
+        if (req.query.tags) {
+            const tags = req.query.tags.split(',');
+            preguntas = await preguntaModel.find({tags: {$in: tags}}, {pregunta: 1}.populate('tag'));
+        }
         res.status(201).json(preguntas);
     } catch (error) {
         res.status(500).json("Error al mostrar las preguntas.");
@@ -30,7 +36,7 @@ const deletePregunta = async (req, res) => {
         console.log(preguntaBuscada, "id?");
         if (!preguntaBuscada || preguntaBuscada === null) {
             return res.status(404).json({
-                mensaje: `No se encontró ningún producto con el ID: ${preguntaId}.`
+                mensaje: `No se encontró ningún pregunta con el ID: ${preguntaId}.`
             });
         }
         await preguntaModel.findByIdAndDelete(preguntaId);
@@ -40,4 +46,4 @@ const deletePregunta = async (req, res) => {
     }
 }
 
-module.exports = { addPregunta, allPreguntas, /* addRespuesta, */ deletePregunta }
+module.exports = { addPregunta, getPreguntas, deletePregunta }
