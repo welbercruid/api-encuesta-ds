@@ -7,7 +7,7 @@ const addRespuesta = async (req, res) => {
         const preguntaBuscada = await respuestaModel.findById(preguntaId);
         if (!preguntaBuscada || preguntaBuscada === undefined) {
             return res.status(404).json({
-                mensaje: `No se encontró ningún producto con el ID: ${preguntaId}.`
+                msj: `No se encontró ningún producto con el ID: ${preguntaId}.`
             });
         }
 
@@ -21,10 +21,10 @@ const addRespuesta = async (req, res) => {
         const updateEncuesta = await preguntaBuscada.save();
         //console.log(updateEncuesta);
         res.status(201).json({
-            mensaje: "Su respuesta se guardo exitosamente!"
+            msj: "Su respuesta se guardo exitosamente!"
         });
     } catch (error) {
-        res.status(500).json("Error al responder.");
+        res.status(500).json({msj: "Error al responder."});
     }
 }
 

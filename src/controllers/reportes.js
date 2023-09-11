@@ -28,7 +28,7 @@ const reports = async (req, res) => {
         ]);
         res.status(200).json(results);
         } catch (error) {
-        res.status(500).json("Error al generar el reporte.");
+        res.status(500).json({msj: "Error al generar el reporte."});
     }
 }
 

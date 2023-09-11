@@ -17,6 +17,9 @@ app.use('/reportes', reportesRouter);
 const tagsRouter = require('./routes/tags');
 app.use('/tags', tagsRouter);
 
+const usersRouter = require('./routes/users');
+app.use('/users', usersRouter);
+
 app.get('/', (req, res) => {
     res.send("Live server")
 });
