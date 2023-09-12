@@ -9,14 +9,15 @@ const add = async (req, res) => {
         res.status(500).json({msj: "Error al crear un usuario."});
     }
 }
+//mostrar todos o buscar por id
 const get = async (req, res) => {
     try {
         const {id} = req.params;
-        const filter = (id) ? {_id: id} : {};
+        const filter = (id) ? {_id: id} : {};   
         const user = await userModel.find(filter, {name: 1, lastname: 1, username: 1, _id: 1});//ocultar pass
         res.status(200).json({Total_de_usuarios: user.length, user});
     } catch (error) {
-        res.status(500).json({msj: "Error."})
+        res.status(500).json({msj: "Error al mostrar usuarios."})
     }
 }
 
@@ -36,7 +37,7 @@ const validateUser = async (req, res) => {
         res.status(200).json({msj: "Login exitoso"});
     } catch (error) {
         console.error(error);
-        res.status(500).json({error: "Error al buscar el nombre de usuario."})
+        res.status(500).json({error: "Error al loguear."})
     }
 }
 

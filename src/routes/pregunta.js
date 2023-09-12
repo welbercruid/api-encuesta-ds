@@ -2,10 +2,9 @@ const express = require('express');
 const router = express.Router();
 const preguntaControllers = require('../controllers/pregunta');
 
-router.post('/crear', preguntaControllers.addPregunta); // si
-router.get('/', preguntaControllers.getPreguntas);          // si
-router.get('/:id', preguntaControllers.getPreguntas);          // si
-//router.post('/preguntas/:preguntaId/respuestas', preguntaControllers.addRespuesta); // si
-router.delete('/:preguntaId', preguntaControllers.deletePregunta)
+router.post('/', preguntaControllers.add); // si
+router.get('/', preguntaControllers.get);          // si
+router.get('/:id', preguntaControllers.get);          // si
+router.delete('/:preguntaId', preguntaControllers.del)
 
 module.exports = router;

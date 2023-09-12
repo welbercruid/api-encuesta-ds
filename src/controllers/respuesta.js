@@ -1,6 +1,6 @@
 const respuestaModel = require('../schemas/encuesta');
 
-const addRespuesta = async (req, res) => {
+const add = async (req, res) => {
     try {
         const { respuesta, nombre } = req.body;
         const { preguntaId } = req.params;
@@ -28,4 +28,4 @@ const addRespuesta = async (req, res) => {
     }
 }
 
-module.exports = { addRespuesta }
+module.exports = { add }

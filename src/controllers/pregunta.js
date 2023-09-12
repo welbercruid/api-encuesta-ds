@@ -1,7 +1,7 @@
 const preguntaModel = require('../schemas/encuesta');
 const tagModel = require('../schemas/tags');
 
-const addPregunta = async (req, res) => {
+const add = async (req, res) => {
     try {
         //console.log(req.body, "el req.body");
         const encuesta = new preguntaModel(req.body);
@@ -12,8 +12,8 @@ const addPregunta = async (req, res) => {
         res.status(500).json({msj: "Error al crear la pregunta."});
     }
 }
-
-const getPreguntas = async (req, res) => {
+//mostrar todos o buscar por id
+const get = async (req, res) => {
     try {
         const {id} = req.params;
         const filter = (id) ? {_id: id} : { };
@@ -29,7 +29,7 @@ const getPreguntas = async (req, res) => {
     }
 }
 
-const deletePregunta = async (req, res) => {
+const del = async (req, res) => {
     try {
         const { preguntaId } = req.params;
         console.log(preguntaId);
@@ -43,8 +43,8 @@ const deletePregunta = async (req, res) => {
         await preguntaModel.findByIdAndDelete(preguntaId);
         res.status(200).json(`Se elimino la pregunta con el id: ${preguntaId}`)
     } catch (error) {
-        res.status(500).json({msj: "Error al buscar."});
+        res.status(500).json({msj: "Error al querer eliminar."});
     }
 }
 
-module.exports = { addPregunta, getPreguntas, deletePregunta }
+module.exports = { add, get, del }

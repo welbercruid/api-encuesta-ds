@@ -10,7 +10,7 @@ const add = async (req, res) => {
        res.status(500).json({msj: "Error al crear el tag"}); 
     }
 }
-
+//mostrar todos o buscar por id
 const get = async (req, res) => {
     try {
         const {id} = req.params;
